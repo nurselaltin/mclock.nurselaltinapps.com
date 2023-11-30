@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>My Clock</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url("https://i.pinimg.com/originals/c8/ae/15/c8ae15f865b4b466c8a59749e5fe2a4f.gif");
+      background-size: cover;
+      background-position: center;
+    }
+    #saat {
+      font-size: 4rem;
+      background-color: #333;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+    #playButton {
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-bottom: 20px;
+    }
+    #videoFrame {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="saat"></div>
+  <button id="playButton">Play Music</button>
+  <iframe id="videoFrame" width="560" height="315" src="https://www.youtube.com/embed/jfKfPfyJRdk?si=mBExnpYLTCdDFvPA" frameborder="0" allowfullscreen></iframe>
+
+  <script>
+    function saatGuncelle() {
+      const simdi = new Date();
+      const saat = simdi.toLocaleTimeString('tr-TR');
+      document.getElementById('saat').textContent = saat;
+    }
+
+    setInterval(saatGuncelle, 1000);
+    saatGuncelle();
+
+    const playButton = document.getElementById('playButton');
+    const videoFrame = document.getElementById('videoFrame');
+
+    playButton.addEventListener('click', function() {
+      if (videoFrame.style.display === 'none') {
+        videoFrame.style.display = 'block';
+        playButton.textContent = 'Pause Music';
+      } else {
+        videoFrame.style.display = 'none';
+        playButton.textContent = 'Play Music';
+      }
+    });
+  </script>
+</body>
+</html>
